@@ -3,4 +3,4 @@ version: '1.0-SNAPSHOT'
 main: me.vexy.vexyNetherEvent.VexyNetherEvent
 api-version: '1.21'
 authors: [ vexy ]
-description: My first plugin ever
+description: Plugin for halloween event
