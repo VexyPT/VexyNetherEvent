@@ -13,8 +13,8 @@ public final class VexyNetherEvent extends JavaPlugin {
         plugin = this;
 
         // Listeners
-        getServer().getPluginManager().registerEvents(new RandomDrop(),  plugin);
-        getServer().getPluginManager().registerEvents(new PumpkinPlaceBlocker(), plugin);
+        getServer().getPluginManager().registerEvents(new RandomDrop(),  this);
+        getServer().getPluginManager().registerEvents(new PumpkinPlaceBlocker(), this);
     }
 
     public static VexyNetherEvent getPlugin() {
