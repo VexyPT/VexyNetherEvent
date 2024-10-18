@@ -31,7 +31,7 @@ public class RandomDrop implements Listener {
                 event.setDropItems(false);
 
                 Random random = new Random();
-                ItemStack drop =possibleDrops[random.nextInt(possibleDrops.length)];
+                ItemStack drop = possibleDrops[random.nextInt(possibleDrops.length)];
 
                 if (drop.getType() == Material.APPLE) {
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "excellentcrates dropkey chavehalloween " + blockLocation.getBlockX() + " " + blockLocation.getBlockY() + " " + blockLocation.getBlockZ());
