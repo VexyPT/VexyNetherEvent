@@ -1,6 +1,7 @@
 package me.vexy.vexyNetherEvent.Listeners;
 
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,7 +13,7 @@ public class PumpkinPlaceBlocker implements Listener {
     public void onBlockPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
 
-        if(event.getBlock().getType() == Material.CARVED_PUMPKIN) {
+        if(event.getBlock().getType() == Material.CARVED_PUMPKIN && event.getBlock().getWorld().getEnvironment().equals(World.Environment.NETHER)) {
             if (player.hasPermission("brpacks.admin")) {
                 event.setCancelled(true);
                 player.sendMessage("§cVocê não pode colocar esse bloco.");

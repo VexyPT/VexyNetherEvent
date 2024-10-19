@@ -18,7 +18,7 @@ public class RandomDrop implements Listener {
             new ItemStack(Material.EMERALD, 1),
             new ItemStack(Material.GOLD_INGOT, 1),
             new ItemStack(Material.IRON_INGOT, 1),
-            new ItemStack(Material.APPLE, 1), // Crate
+            null, // Crate // Existe formas melhores de fazer isso
     };
 
     @EventHandler
@@ -33,7 +33,7 @@ public class RandomDrop implements Listener {
                 Random random = new Random();
                 ItemStack drop = possibleDrops[random.nextInt(possibleDrops.length)];
 
-                if (drop.getType() == Material.APPLE) {
+                if (drop == null) {
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "excellentcrates dropkey chavehalloween " + blockLocation.getBlockX() + " " + blockLocation.getBlockY() + " " + blockLocation.getBlockZ());
                 } else {
                     world.dropItemNaturally(blockLocation, drop);
