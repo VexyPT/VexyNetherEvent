@@ -27,7 +27,7 @@ public class RandomDrop implements Listener {
         World world = blockLocation.getWorld();
 
         if (world != null && world.getEnvironment() == World.Environment.NETHER) {
-            if(event.getBlock().getType() == Material.CARVED_PUMPKIN) {
+            if(event.getBlock().getType() == Material.JACK_O_LANTERN) {
                 event.setDropItems(false);
 
                 Random random = new Random();

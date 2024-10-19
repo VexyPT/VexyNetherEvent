@@ -13,7 +13,7 @@ public class PumpkinPlaceBlocker implements Listener {
     public void onBlockPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
 
-        if(event.getBlock().getType() == Material.CARVED_PUMPKIN && event.getBlock().getWorld().getEnvironment().equals(World.Environment.NETHER)) {
+        if(event.getBlock().getType() == Material.JACK_O_LANTERN && event.getBlock().getWorld().getEnvironment().equals(World.Environment.NETHER)) {
             if (player.hasPermission("brpacks.admin")) {
                 event.setCancelled(true);
                 player.sendMessage("§cVocê não pode colocar esse bloco.");
