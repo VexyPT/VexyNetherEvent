@@ -23,7 +23,7 @@ public class RandomDrop implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        Location blockLocation = event.getBlock().getLocation();
+        Location blockLocation = event.getBlock().getLocation().toCenterLocation();
         World world = blockLocation.getWorld();
 
         if (world != null && world.getEnvironment() == World.Environment.NETHER) {
