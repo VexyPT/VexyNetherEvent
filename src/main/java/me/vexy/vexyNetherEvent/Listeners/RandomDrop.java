@@ -18,28 +18,27 @@ public class RandomDrop implements Listener {
             new ItemStack(Material.EMERALD, 1),
             new ItemStack(Material.GOLD_INGOT, 1),
             new ItemStack(Material.IRON_INGOT, 1),
-            new ItemStack(Material.APPLE, 1), // Crate
+            null, // Crate // Existe formas melhores de fazer isso
     };
 
-    @EventHandler
+    private final Random random = new Random(); // Não criar o random toda vez que o evento é chamado
+
+    @EventHandler(ignoreCancelled = true) // outros plugins podem cancelar o evento e mesmo assim o código vai rodar
     public void onBlockBreak(BlockBreakEvent event) {
-        Location blockLocation = event.getBlock().getLocation();
+        Location blockLocation = event.getBlock().getLocation().toCenterLocation();
         World world = blockLocation.getWorld();
 
-        if (world != null && world.getEnvironment() == World.Environment.NETHER) {
-            if(event.getBlock().getType() == Material.CARVED_PUMPKIN) {
-                event.setDropItems(false);
+        if (world == null || world.getEnvironment() != World.Environment.NETHER) return;
+        if (event.getBlock().getType() != Material.JACK_O_LANTERN) return;               // return early deixa o código mais limpo
 
-                Random random = new Random();
-                ItemStack drop = possibleDrops[random.nextInt(possibleDrops.length)];
+        event.setDropItems(false);
+        ItemStack drop = possibleDrops[random.nextInt(possibleDrops.length)];
 
-                if (drop.getType() == Material.APPLE) {
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "excellentcrates dropkey chavehalloween " + blockLocation.getBlockX() + " " + blockLocation.getBlockY() + " " + blockLocation.getBlockZ());
-                } else {
-                    world.dropItemNaturally(blockLocation, drop);
-                }
-            }
+        if (drop == null) {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "excellentcrates dropkey chavehalloween " + blockLocation.getBlockX() + " " + blockLocation.getBlockY() + " " + blockLocation.getBlockZ() + " " + world.getName());
+            return;
         }
-
+        world.dropItemNaturally(blockLocation, drop);
     }
+
 }
