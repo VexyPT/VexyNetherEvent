@@ -21,4 +21,3 @@ public final class VexyNetherEvent extends JavaPlugin {
         return plugin;
     }
 }
-
