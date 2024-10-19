@@ -13,11 +13,10 @@ public class PumpkinPlaceBlocker implements Listener {
     public void onBlockPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
 
-        if(event.getBlock().getType() == Material.JACK_O_LANTERN && event.getBlock().getWorld().getEnvironment().equals(World.Environment.NETHER)) {
-            if (player.hasPermission("brpacks.admin")) {
-                event.setCancelled(true);
-                player.sendMessage("§cVocê não pode colocar esse bloco.");
-            }
-        }
+        if (event.getBlock().getType() != Material.JACK_O_LANTERN) return;
+        if (!event.getBlock().getWorld().getEnvironment().equals(World.Environment.NETHER)) return;
+        if (player.hasPermission("brpacks.admin")) return;
+        event.setCancelled(true);
+        player.sendMessage("§cVocê não pode colocar esse bloco.");
     }
 }

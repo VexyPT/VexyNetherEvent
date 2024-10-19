@@ -6,18 +6,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class VexyNetherEvent extends JavaPlugin {
 
-    private static VexyNetherEvent plugin;
+    private static VexyNetherEvent instance;
 
     @Override
     public void onEnable() {
-        plugin = this;
+        instance = this;
 
         // Listeners
         getServer().getPluginManager().registerEvents(new RandomDrop(),  this);
         getServer().getPluginManager().registerEvents(new PumpkinPlaceBlocker(), this);
     }
 
-    public static VexyNetherEvent getPlugin() {
-        return plugin;
+    public static VexyNetherEvent get() {
+        return instance;
     }
 }
